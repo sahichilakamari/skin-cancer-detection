@@ -7,7 +7,10 @@ import os
 import matplotlib.pyplot as plt
 
 # --- CONFIG ---
-MODEL_PATH = "model/skinsafe_optimized_model.h5"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "model", "skinsafe_optimized_model.h5")
+
+model = tf.keras.models.load_model(MODEL_PATH)
 IMAGE_SIZE = 128
 
 # MUST be first Streamlit command
@@ -152,4 +155,5 @@ if uploaded_file and model:
 
 elif uploaded_file and not model:
     st.warning("Model unavailable - cannot process image")
+
 
